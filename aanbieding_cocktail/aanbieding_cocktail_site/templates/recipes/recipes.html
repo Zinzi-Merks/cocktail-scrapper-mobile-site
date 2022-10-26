@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <!-- Add responsive meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Update primary color to match the yellow of my logo: https://getbootstrap.com/docs/5.2/customize/css-variables/ -->
+    <style>
+      .btn.btn-primary {
+        --bs-btn-active-bg: #fa6b6b;
+        --bs-btn-bg: #fa6b6b;
+        --bs-btn-active-border-color: #fa6b6b;
+        --bs-btn-border-color: #fa6b6b;
+      }
+
+      .btn:hover {
+        --bs-btn-hover-bg: #f81212;
+        --bs-btn-hover-border-color: #f81212;
+      }
+    </style>
+
+    <!-- Import bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+
+    <!-- Import bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+  </head>
+  <body>
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom align-items-center">
+      <!-- Example header from: https://getbootstrap.com/docs/5.2/examples/headers/ -->
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <img src="http://zinzimerks.nl/wp-content/uploads/2021/10/cropped-Logo-Zinzi.png" class="mx-3" style="width: 5rem" />
+        <span class="fs-4">Cocktail aanbiedingen</span>
+      </a>
+    </header>
+
+    <!-- Content here -->
+    <div class="container">
+      {% if data %}
+      <div class="row gy-4 mb-3">
+        {% for recipe in data %}
+        <div class="col-12 px-2 col-md-6">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title">{{recipe.0}}</h5>
+              <p class="card-text">{{recipe.1}}</p>
+              <h5 class="card-title">Ingredienten</h5>
+              <ul class="list-group">
+                {% for ingredient in recipe.3 %}
+                <li class="list-group-item">{{ingredient}}</li>
+                {% endfor %}
+              </ul>
+              <h5 class="card-title mt-3">Benodigheden</h5>
+              <ol type="1">
+                {% for step in recipe.4 %}
+                <li>{{step}}</li>
+                {% endfor %}
+              </ol>
+              <a href="{{recipe.2}}" target="_blank" class="btn btn-primary w-100 mb-1 mt-3 align-self-end">Ga naar recept</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="position-absolute d-flex flex-column align-items-center" style="left: 50%; top: 50%; transform: translate(-50%, -50%)">
+        <i class="bi bi-emoji-frown" style="font-size: 3rem; color: orange"></i>
+        <p>Geen recepten gevonden voor <b>{{ingredient}}</b></p>
+      </div>
+      {% endif %}
+    </div>
+    <!-- Import bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+</html>

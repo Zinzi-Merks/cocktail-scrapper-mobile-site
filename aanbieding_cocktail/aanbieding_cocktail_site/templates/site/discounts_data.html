@@ -1,0 +1,17 @@
+{% for discount in data %}
+<div class="col-6 px-2 my-1">
+  <div class="card h-100">
+    <img src="{{discount.image_url}}" class="card-img-top" style="max-width: 100%; max-height: 12rem; object-fit: contain" />
+    <div class="card-body d-flex flex-column">
+      <h5 class="card-title">{{discount.name}}</h5>
+      <p class="card-text flex-grow-1">{{discount.price}}</p>
+      <a href="{{discount.url}}" target="_blank" class="btn btn-primary w-100 mb-1">Ga naar actie</a>
+      {% if filter == 'likeuren' %}
+      <a href="/recipes/{{discount.name}}" class="btn btn-primary w-100">Vind recepten</a>
+      {% else %}
+      <a href="/recipes/{{filter}}" class="btn btn-primary w-100">Vind recepten</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endfor %}
