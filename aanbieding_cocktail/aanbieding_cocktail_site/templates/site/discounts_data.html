@@ -8,6 +8,10 @@
       <a href="{{discount.url}}" target="_blank" class="btn btn-primary w-100 mb-1">Ga naar actie</a>
       {% if filter == 'likeuren' %}
       <a href="/recipes/{{discount.name}}" class="btn btn-primary w-100">Vind recepten</a>
+      {% elif filter == 'wodka' %}
+      <a href="/recipes/vodka" class="btn btn-primary w-100">Vind recepten</a>
+      {% elif filter == 'whisky' %}
+      <a href="/recipes/whiskey" class="btn btn-primary w-100">Vind recepten</a>
       {% else %}
       <a href="/recipes/{{filter}}" class="btn btn-primary w-100">Vind recepten</a>
       {% endif %}
